@@ -1,6 +1,6 @@
 <?php
 try {
-    $con = mysqli_connect("localhost", "root", "","2025_4CE_A");
+    $con = mysqli_connect("localhost", "root", "", "2025_4CE_A");
     // echo "Connected successfully";
     // 1 time process 
     // $db = "create database 2025_4CEA";
@@ -29,6 +29,7 @@ try {
     //     state char(50),
     //     gender char(10),
     //     hobbies varchar(200),
+    //address varchar(100),
     //     photo varchar(200))";
     //     try {
     //         if ($con->query($register)) {
