@@ -1,6 +1,6 @@
 <?php
 try {
-    $con = mysqli_connect("localhost", "root", "", "2025_4CE_A");
+    $con = mysqli_connect("localhost", "root", "","2025_4CE_A");
     // echo "Connected successfully";
     // 1 time process 
     // $db = "create database 2025_4CEA";

@@ -30,9 +30,17 @@
                  <img src="profile_pictures/<?php echo $row['photo']; ?>" alt="" width="100px">
              </td>
              <td>
-                 <button class="btn btn-primary">Edit</button>
-                 <button class="btn btn-info">View</button>
-                 <button class="btn btn-danger">Delete</button>
+                 <a href="edit_user.php?uid=<?php echo $row['id'];?>">
+                     <button class="btn btn-primary">Edit</button>
+                 </a>
+                 <a href="view_user.php">
+                     <button class="btn btn-info">View</button>
+                 </a>
+                 <a href="delete_user.php">
+                     <button class="btn btn-danger">Delete</button>
+                 </a>
+
+
              </td>
          </tr>
 

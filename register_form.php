@@ -97,12 +97,16 @@ if (isset($_POST['reg_btn'])) {
     $password = $_POST['pswd'];
     $mobile = $_POST['mobile'];
     $state = $_POST['state'];
+    $state = implode(',', $state);
     $gender = $_POST['gender'];
     $address = $_POST['address'];
-    $hobbies = implode(",", $_POST['hobbies']);
+    $h = $_POST['hobbies'];
+    $hobbies = implode(",", $h);
     $profile_pic = uniqid() . $_FILES['profile_pic']['name'];
 
-    $insert = "INSERT INTO `register`(`name`, `email`, `password`, `state`, `gender`, `hobbies`, `address`,`photo`) VALUES ('$fullname','$email',' $password','$state',$mobile,'$gender','$hobbies','$address','$profile_pic')";
+    $insert = "INSERT INTO `register`(`name`, `email`, `password`, `state`, `mobile`,`gender`, `hobbies`, `address`,`photo`) VALUES ('$fullname','$email',' $password','$state',$mobile,'$gender','$hobbies','$address','$profile_pic')";
+
+    // echo $insert;
 
     try {
         if ($con->query($insert)) {
@@ -119,7 +123,7 @@ if (isset($_POST['reg_btn'])) {
 
 ?>
     <script>
-        window.location.href = "register_form.php";
+        // window.location.href = "register_form.php";
     </script>
 <?php
 }
