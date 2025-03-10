@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function btn_click()
+        {
+            
+            var n=document.getElementById('n1').value;
+            var m = document.getElementById('n2').value;
+            var sum=parseFloat(n)+parseFloat(m);
+        //   document.getElementById('ans').innerHTML = "sum of "+n+ " and "+m +" is "+sum;;
+        // console.log("sum of "+ n + " and "+ m + " is "+sum);
+        document.write("sum of "+ n + " and "+ m + " is "+sum);
+        document.write("hello");
+        }
+        function even_odd()
+        {
+            var n=document.getElementById('n1').value;
+            if(n%2==0)
+            {
+                document.getElementById('ans').innerHTML = n+" is an Even Number";
+            }
+            else
+            {
+                document.getElementById('ans').innerHTML = n+" is an Odd Number";
+            }
+        }
+    </script>
+</head>
+<body>
+    Enter number-1::<input type="text" id="n1">
+    <br>
+    Enter Number2::<input type="text" id="n2">
+    <br>
+    <br>
+    
+    <button onclick="btn_click()">Find Sum</button>
+    <button onclick="even_odd()">Even or Odd</button>
+    <p id="ans"> Answer will be displayed here</p>
+</body>
+</html>
