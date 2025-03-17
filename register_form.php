@@ -11,23 +11,6 @@ include_once("connect.php");
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.bundle.min.js"></script>
 </head>
-<?php
-if (isset($_COOKIE['success'])) { ?>
-    <div class="alert alert-success alert-dismissible">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Success!</strong> <?php echo $_COOKIE['success']; ?>
-    </div>
-<?php
-}
-if (isset($_COOKIE['error'])) {
-?>
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Error!</strong> <?php echo $_COOKIE['error']; ?>
-    </div>
-<?php
-}
-?>
 
 <body>
     <div class="container">
@@ -123,7 +106,7 @@ if (isset($_POST['reg_btn'])) {
 
 ?>
     <script>
-        // window.location.href = "register_form.php";
+        window.location.href = "fetch_data_register.php";
     </script>
 <?php
 }

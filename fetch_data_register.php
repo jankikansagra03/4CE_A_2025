@@ -7,6 +7,13 @@
     $result = $con->query($q);
 
     ?>
+
+ <a href="register_form.php">
+     <button class="btn btn-success m-3">
+         Add new User
+     </button>
+ </a>
+
  <table class="table table-responsive table-striped">
      <tr>
          <th>Sr.NO</th>
@@ -30,13 +37,13 @@
                  <img src="profile_pictures/<?php echo $row['photo']; ?>" alt="" width="100px">
              </td>
              <td>
-                 <a href="edit_user.php?uid=<?php echo $row['id'];?>">
+                 <a href="edit_user.php?uid=<?php echo $row['id']; ?>">
                      <button class="btn btn-primary">Edit</button>
                  </a>
-                 <a href="view_user.php">
+                 <a href="view_user.php?uid=<?php echo $row['id']; ?>">
                      <button class="btn btn-info">View</button>
                  </a>
-                 <a href="delete_user.php">
+                 <a href="delete_user.php?uid=<?php echo $row['id']; ?>">
                      <button class="btn btn-danger">Delete</button>
                  </a>
 

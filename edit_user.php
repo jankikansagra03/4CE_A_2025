@@ -12,14 +12,15 @@ if (isset($_GET['uid'])) {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.bundle.min.js"></script>
     <div class="container">
-        <form action="register_form.php" method="post" enctype="multipart/form-data">
+        <form action="edit_user.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="uid" value="<?php echo $row['id']; ?>">
             <div class="mb-3 mt-3">
                 <label for="fullname" class="form-label">Fullname:</label>
                 <input type="text" class="form-control" id="fullname" placeholder="Enter Name" name="fullname" value="<?php echo $row['name']; ?>">
             </div>
             <div class="mb-3 mt-3">
                 <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $row['email']; ?>">
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $row['email']; ?>" readonly>
             </div>
             <div class="mb-3">
                 <label for="pwd" class="form-label">Password:</label>
@@ -105,8 +106,51 @@ if (isset($_GET['uid'])) {
                 <label for="profile_pic" class="form-label">Profile Picture:</label>
                 <input type="file" class="form-control" id="profile_pic" name="profile_pic">
             </div>
-            <button type="submit" class="btn btn-primary" name="reg_btn">Submit</button>
+            <button type="submit" class="btn btn-primary" name="edit_btn">Submit</button>
         </form>
     </div>
+    <?php
+}
+
+if (isset($_POST['edit_btn'])) {
+
+
+    $id = $_POST['uid'];
+    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
+    $password = $_POST['pswd'];
+    $mobile = $_POST['mobile'];
+    $state = $_POST['state'];
+    $state = implode(',', $state);
+    $gender = $_POST['gender'];
+    $address = $_POST['address'];
+    $h = $_POST['hobbies'];
+    $hobbies = implode(",", $h);
+    if ($_FILES['profile_pic']['name'] != "") {
+        $profile_pic = uniqid() . $_FILES['profile_pic']['name'];
+        $profile_picture = "Select photo from register where id=$id";
+        
+        $row = mysqli_fetch_assoc($con->query($profile_picture));
+        $old_profile_picture = $row['photo'];
+    }
+    $updt = "UPDATE `register` SET `name`='$fullname',`password`='$password',`state`='$state',`mobile`=$mobile,`gender`='$gender',`hobbies`='$hobbies',`address`='$address'";
+
+    if ($_FILES['profile_pic']['name'] != "") {
+        $updt = $updt . ", photo='$profile_pic' ";
+    }
+    $updt = $updt . " where id=$id";
+
+    if ($con->query($updt)) {
+        if ($_FILES['profile_pic']['name'] != ""); {
+            move_uploaded_file($_FILES['profile_pic']['tmp_name'], "profile_pictures/" . $profile_pic);
+            unlink("profile_pictures/" . $old_profile_picture);
+    ?>
+            <script>
+                window.location.href = "fetch_data_register.php"
+            </script>
 <?php
+        }
+    } else {
+        setcookie('error', "error in updating data", time() + 5, "/");
+    }
 }
